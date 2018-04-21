@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <h1>Welcome to Tweets Analytica!</h1>
+        <h2>Enter your user name <input name="user_name" type="text"></h2>
+        <button type="submit" value="Submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>
