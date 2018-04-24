@@ -1,3 +1,7 @@
+"""
+No longer used, due to being unstable.
+Twitter API with Tweepy library is used instead in TweetsRetreiver class.
+"""
 from DataFetcher.models import User,Tweet
 from bs4 import BeautifulSoup
 import urllib3
