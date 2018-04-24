@@ -10,7 +10,7 @@ from django.core.exceptions import ValidationError
 class TweetsScraper:
     """Scrapes user twitter profile and returns public tweets data.
 
-    Takes a twitter username as 'handle'
+    Takes a twitter username as the string 'handle'
     Saves user profile data to User DB table
     Saves tweets data to Tweets DB table
     """
@@ -31,7 +31,7 @@ class TweetsScraper:
     def get_user_data(self):
         """Gets user's profile data from Beautiful Soup object and saves it to DB.
 
-        Returns a refrence to user if it's saved
+        Returns a refrence to user database object if it's saved
         Returns False if the user can't be saved to database
         """
 
@@ -69,9 +69,9 @@ class TweetsScraper:
 
 
     def get_user_tweets(self,user):
-        """Gets user's last 20 tweets from Beautiful Soup object and saves them to DB.
+        """Gets user's last 21 tweets from Beautiful Soup object and saves them to DB.
 
-        Takes user object as parameter
+        Takes a user object as parameter
         Saves tweets belonging to self.handle in the database as Tweet objects
         """
 
