@@ -3,13 +3,16 @@ from DataFetcher.models import User,Tweet
 from django.core.exceptions import ValidationError
 
 class TweetsRetreiver:
-    """Retreives user's twitter profile data using twitter api and tweepy lib.
+    """Retreives user's twitter profile data using twitter api and Tweepy lib.
 
-    :param handle: String carrying twitter username
     :saves: User's profile data in User table in db,
     :saves: User's tweets in Tweet table in db.
     """
     def __init__(self,handle):
+        """TweetsRetreiver Class Constructor.
+
+        :param handle: String carrying user's twitter username.
+        """
         self.consumer_key = "2Vikr8XyYV4jtwgVhzet1Z1SR"
         self.consumer_secret = open('D:/TwitterScraper/ConsumerSecret.txt','r').read()
 
@@ -18,7 +21,7 @@ class TweetsRetreiver:
         self.handle = handle
 
         #Get user timeline data as list of JSON responses
-        self.tweets = self.api.user_timeline(self.handle, tweet_mode='extended')
+        self.tweets = self.api.user_timeline(screen_name=self.handle, tweet_mode='extended',count=50)
 
 
     def save_user_data(self):
@@ -33,6 +36,7 @@ class TweetsRetreiver:
         following_count = self.tweets[0].user.friends_count
         likes_count = self.tweets[0].user.favourites_count
 
+        # Create object of User database table
         user = User(
             name = name,
             handle = self.handle,
@@ -42,6 +46,7 @@ class TweetsRetreiver:
             likes_count = likes_count
         )
 
+        # Validate and save user data to database
         try:
             user.full_clean()
             user.save()
@@ -61,7 +66,7 @@ class TweetsRetreiver:
             retweets_count = tweet.retweet_count
             date_created = tweet.created_at
 
-            #Create object of Tweet DB table
+            #Create object of Tweet database table
             my_tweet = Tweet(
                 user = user,
                 text = text,
@@ -71,9 +76,11 @@ class TweetsRetreiver:
                 date_created = date_created
             )
 
-            #Validate Fetched tweet data
+            #Validate and save Fetched tweet data to database
             try:
                 my_tweet.full_clean()
                 my_tweet.save()
             except ValidationError:
                 pass
+
+        return self.tweets
