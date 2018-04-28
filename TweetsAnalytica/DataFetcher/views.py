@@ -1,14 +1,24 @@
 from django.shortcuts import render
 from DataFetcher.TweetsRetreiverApi import TweetsRetreiver
+from DataFetcher.TweetsAnalysis import TweetsAnalysis
+
 
 def index(request):
     if request.method == 'POST':
         handle = request.POST.get('user_name')
 
-        obj = TweetsRetreiver(str(handle))
-        user = obj.save_user_data()
+        retreiver = TweetsRetreiver(str(handle))
+        user = retreiver.save_user_data()
 
+        # Analyze tweets if returned user is valid
         if user != False:
-            obj.save_user_tweets(user)
+            # Get user tweets
+            tweets = retreiver.save_user_tweets(user)
 
-    return render(request,'home.html')
+            # Create object from TweetsAnalysis to analyze tweets
+            analyser = TweetsAnalysis(tweets)
+
+            # Get dictionary containing analysis results
+            emotions = analyser.get_emotions()
+
+    return render(request, 'home.html')
