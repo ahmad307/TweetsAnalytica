@@ -3,7 +3,7 @@ from DataFetcher.TweetsRetreiverApi import TweetsRetreiver
 from DataFetcher.TweetsAnalysis import TweetsAnalysis
 
 
-def index(request):
+def home(request):
     if request.method == 'POST':
         handle = request.POST.get('user_name')
 
@@ -21,4 +21,11 @@ def index(request):
             # Get dictionary containing analysis results
             emotions = analyser.get_emotions()
 
+            # Get analysis visualization chart
+            figure = analyser.visualize_tweets(emotions)
+
     return render(request, 'home.html')
+
+
+def index(request):
+    return render(request, 'landing_page/index.html')
