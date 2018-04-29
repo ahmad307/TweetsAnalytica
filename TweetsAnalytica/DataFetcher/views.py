@@ -4,6 +4,7 @@ from DataFetcher.TweetsAnalysis import TweetsAnalysis
 
 
 def home(request):
+    response = {}
     if request.method == 'POST':
         handle = request.POST.get('user_name')
 
@@ -24,7 +25,13 @@ def home(request):
             # Get analysis visualization chart
             figure = analyser.visualize_tweets(emotions)
 
-    return render(request, 'home.html')
+            # Save figure in static folder as png
+            figure.savefig('static/analysis_figures/figure.png')
+
+            # Inject html with figure path
+            response['analysis_figure'] = 'analysis_figures/figure.png'
+
+    return render(request, 'home.html', response)
 
 
 def index(request):
