@@ -1,14 +1,17 @@
 from paralleldots import set_api_key,get_api_key
 from paralleldots import similarity, ner, taxonomy, sentiment, keywords, intent, emotion, abuse
+from random import randint
+from io import StringIO,BytesIO
 import tweepy
 import re
+import matplotlib.pyplot as plt
+import base64
 
 
 def clean_tweet(tweet):
     """Cleans tweet text from unwanted additions (i.e. urls), using a regular expression."""
 
     return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
-
 
 class TweetsAnalysis:
     """Analyzes given tweets using Parallel Dots API."""
@@ -22,7 +25,7 @@ class TweetsAnalysis:
         self.tweets = tweets
 
         # Setting ParalleDots API keys
-        set_api_key(open('D:/TweetsSraper/ParallelDotsKey.txt','r').read())
+        set_api_key(open('D:/TwitterScraper/ParallelDotsKey.txt', 'r').read())
         get_api_key()
 
         #Dictionary to save analysis results
@@ -45,3 +48,21 @@ class TweetsAnalysis:
                 self.emotions[emotion(tweet)['emotion']['emotion']] = 1
 
         return self.emotions
+
+
+    def visualize_tweets(self,emotions):
+        """Draws a pie chart of ParallelDots analysis result using MatPlotLib"""
+
+        # Extract keys and values from given Dictionary
+        labels = list(emotions.keys())
+        values = list(emotions.values())
+        colors = []
+
+        # Choose random color for every key in labels
+        for _ in range(0, len(labels)):
+            colors.append('#{:06x}'.format(randint(0, 256 ** 3)))
+
+        plt.pie(values, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=90)
+        plt.axis('equal')
+
+        return plt
