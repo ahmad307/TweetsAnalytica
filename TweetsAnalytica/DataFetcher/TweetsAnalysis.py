@@ -1,11 +1,9 @@
 from paralleldots import set_api_key,get_api_key
 from paralleldots import similarity, ner, taxonomy, sentiment, keywords, intent, emotion, abuse
 from random import randint
-from io import StringIO,BytesIO
+import matplotlib.pyplot as plt
 import tweepy
 import re
-import matplotlib.pyplot as plt
-import base64
 
 
 def clean_tweet(tweet):
@@ -62,6 +60,7 @@ class TweetsAnalysis:
         for _ in range(0, len(labels)):
             colors.append('#{:06x}'.format(randint(0, 256 ** 3)))
 
+        # Set figure properties
         plt.pie(values, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=90)
         plt.axis('equal')
 
