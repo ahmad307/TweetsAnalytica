@@ -1,0 +1,3 @@
+#Vendor front-end template
+TweetsAnalytica/static/* linguist-vendored=true
+TweetsAnalytica/templates/landing_page/* linguist-vendored=true
