@@ -10,7 +10,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Glint</title>
+    <title>Tweets Analytica</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -43,7 +43,7 @@
     <header class="s-header">
 
         <div class="header-logo">
-            <a class="site-logo" href="index.html">
+            <a class="site-logo" href="">
                 <img src={% static "DataFetcher/images/logo.png" %} alt="Homepage">
             </a>
         </div>
@@ -61,7 +61,7 @@
                     <li><a class="smoothscroll"  href="#works" title="works">Works</a></li>
                 </ul>
     
-                <p>Perspiciatis hic praesentium nesciunt. Et neque a dolorum <a href='#0'>voluptatem</a> porro iusto sequi veritatis libero enim. Iusto id suscipit veritatis neque reprehenderit.</p>
+                <p>Tweets Analytica is currently in Beta version.</p>
     
                 <ul class="header-nav__social">
                     <li>
@@ -114,8 +114,8 @@
                 </h1>
 
                 <div class="home-content__buttons">
-                    <a href="#contact" class="smoothscroll btn btn--stroke">
-                        Start a Project
+                    <a href="#works" class="smoothscroll btn btn--stroke">
+                        Try It Out
                     </a>
                     <a href="#about" class="smoothscroll btn btn--stroke">
                         More About Us
@@ -171,28 +171,21 @@
         <div class="row about-desc" data-aos="fade-up">
             <div class="col-full">
                 <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt. 
+                TweetsAnalytica is a web-based application built with Django framework, that applies sentiment analysis on a user's Twitter profile and visualizes analysis result.
+                    <br> Tweets Analytica uses Twitter API, ParallelDots API, Tweepy and Matplotlib Python libraries.
                 </p>
             </div>
         </div> <!-- end about-desc -->
 
-        <div class="row about-stats stats block-1-4 block-m-1-2 block-mob-full" data-aos="fade-up">
-                
-            <div class="col-block stats__col ">
-                <div class="stats__count">127</div>
-                <h5>Awards Received</h5>
+        <div class="row about-stats stats block-1-2 block-m-1-2 block-mob-full" data-aos="fade-up">
+
+            <div class="col-block stats__col">
+                <div class="stats__count">{{ users_count }}</div>
+                <h5>Users Analyzed</h5>
             </div>
             <div class="col-block stats__col">
-                <div class="stats__count">1505</div>
-                <h5>Cups of Coffee</h5>
-            </div>
-            <div class="col-block stats__col">
-                <div class="stats__count">109</div>
-                <h5>Projects Completed</h5>
-            </div>
-            <div class="col-block stats__col">
-                <div class="stats__count">102</div>
-                <h5>Happy Clients</h5> 
+                <div class="stats__count">{{ tweets_count }}</div>
+                <h5>Tweets Processed</h5>
             </div>
 
         </div> <!-- end about-stats -->
@@ -210,200 +203,26 @@
                 
             <div class="row section-header has-bottom-sep light-sep" data-aos="fade-up">
                 <div class="col-full">
-                    <h3 class="subhead">Recent Works</h3>
-                    <h1 class="display-2 display-2--light">We love what we do, check out some of our latest works</h1>
+                    <h3 class="subhead">Try Tweets Analytica</h3>
+                    <h1 class="display-2 display-2--light">Enter Your Twitter User Name</h1>
                 </div>
             </div> <!-- end section-header -->
 
+            <!-- Take username-section -->
+            <div class="row section-header">
+                <form method="POST">
+                    {% csrf_token %}
+                    <input name="user_name" type="text" style="color: black;background-color: ghostwhite;position: relative;left: 398px">
+                    <button type="submit" value="Submit">Submit</button>
+                </form>
+            </div>
+
+            <!-- Analysis figure-section -->
+            <div class="row section-header">
+                <img src={% static analysis_figure %} alt="Enter username to get analyzed figure of your tweets">
+            </div>
+
         </div> <!-- end intro-wrap -->
-
-        <div class="row works-content">
-            <div class="col-full masonry-wrap">
-                <div class="masonry">
-    
-                    <div class="masonry__brick" data-aos="fade-up">
-                        <div class="item-folio">
-                                
-                            <div class="item-folio__thumb">
-                                <a href="{% static "DataFetcher/images/portfolio/gallery/g-shutterbug.jpg" %}" class="thumb-link" title="Shutterbug" data-size="1050x700">
-                                    <img src="{% static "DataFetcher/images/portfolio/lady-shutterbug.jpg" %}"
-                                         srcset={% static "DataFetcher/images/portfolio/lady-shutterbug.jpg 1x" %},{% static "DataFetcher/images/portfolio/lady-shutterbug@2x.jpg 2x" %} alt="">
-                                </a>
-                            </div>
-    
-                            <div class="item-folio__text">
-                                <h3 class="item-folio__title">
-                                    Shutterbug
-                                </h3>
-                                <p class="item-folio__cat">
-                                    Branding
-                                </p>
-                            </div>
-    
-                            <a href="https://www.behance.net/" class="item-folio__project-link" title="Project link">
-                                <i class="icon-link"></i>
-                            </a>
-    
-                            <div class="item-folio__caption">
-                                <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                            </div>
-    
-                        </div>
-                    </div> <!-- end masonry__brick -->
-
-                    <div class="masonry__brick" data-aos="fade-up">
-                        <div class="item-folio">
-                                
-                            <div class="item-folio__thumb">
-                                <a href={% static "DataFetcher/images/portfolio/gallery/g-woodcraft.jpg" %} class="thumb-link" title="Woodcraft" data-size="1050x700">
-                                    <img src={% static "DataFetcher/images/portfolio/woodcraft.jpg" %}
-                                         srcset={% static "DataFetcher/images/portfolio/woodcraft.jpg 1x" %}, {% static "DataFetcher/images/portfolio/woodcraft@2x.jpg 2x" %} alt="">
-                                </a>
-                            </div>
-    
-                            <div class="item-folio__text">
-                                <h3 class="item-folio__title">
-                                    Woodcraft
-                                </h3>
-                                <p class="item-folio__cat">
-                                    Web Design
-                                </p>
-                            </div>
-    
-                            <a href="https://www.behance.net/" class="item-folio__project-link" title="Project link">
-                                <i class="icon-link"></i>
-                            </a>
-    
-                            <div class="item-folio__caption">
-                                <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                            </div>
-    
-                        </div>
-                    </div> <!-- end masonry__brick -->
-    
-                    <div class="masonry__brick" data-aos="fade-up">
-                        <div class="item-folio">
-                                
-                            <div class="item-folio__thumb">
-                                <a href={% static "DataFetcher/images/portfolio/gallery/g-beetle.jpg" %} class="thumb-link" title="The Beetle Car" data-size="1050x700">
-                                    <img src={% static "DataFetcher/images/portfolio/the-beetle.jpg" %}
-                                         srcset={% static "DataFetcher/images/portfolio/the-beetle.jpg 1x" %}, {% static "DataFetcher/images/portfolio/the-beetle@2x.jpg 2x" %} alt="">
-                                </a>
-                            </div>
-    
-                            <div class="item-folio__text">
-                                <h3 class="item-folio__title">
-                                    The Beetle
-                                </h3>
-                                <p class="item-folio__cat">
-                                    Web Development
-                                </p>
-                            </div>
-    
-                            <a href="https://www.behance.net/" class="item-folio__project-link" title="Project link">
-                                <i class="icon-link"></i>
-                            </a>
-    
-                            <div class="item-folio__caption">
-                                <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                            </div>
-    
-                        </div>
-                    </div> <!-- end masonry__brick -->
-    
-                    <div class="masonry__brick" data-aos="fade-up">
-                        <div class="item-folio">
-                                
-                            <div class="item-folio__thumb">
-                                <a href={% static "DataFetcher/images/portfolio/gallery/g-grow-green.jpg" %} class="thumb-link" title="Grow Green" data-size="1050x700">
-                                    <img src={% static "DataFetcher/images/portfolio/grow-green.jpg" %}
-                                         srcset={% static "DataFetcher/images/portfolio/grow-green.jpg 1x" %}, {% static "DataFetcher/images/portfolio/grow-green@2x.jpg 2x" %} alt="">
-                                </a>
-                            </div>
-    
-                            <div class="item-folio__text">
-                                <h3 class="item-folio__title">
-                                    Grow Green
-                                </h3>
-                                <p class="item-folio__cat">
-                                    Branding
-                                </p>
-                            </div>
-    
-                            <a href="https://www.behance.net/" class="item-folio__project-link" title="Project link">
-                                <i class="icon-link"></i>
-                            </a>
-    
-                            <div class="item-folio__caption">
-                                <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                            </div>
-    
-                        </div>
-                    </div> <!-- end masonry__brick -->
-
-                    <div class="masonry__brick" data-aos="fade-up">
-                        <div class="item-folio">
-                                
-                            <div class="item-folio__thumb">
-                                <a href={% static "DataFetcher/images/portfolio/gallery/g-guitarist.jpg" %} class="thumb-link" title="Guitarist" data-size="1050x700">
-                                    <img src={% static "DataFetcher/images/portfolio/guitarist.jpg" %}
-                                         srcset={% static "DataFetcher/images/portfolio/guitarist.jpg 1x" %}, {% static "DataFetcher/images/portfolio/guitarist@2x.jpg 2x" %} alt="">
-                                </a>
-                            </div>
-    
-                            <div class="item-folio__text">
-                                <h3 class="item-folio__title">
-                                    Guitarist
-                                </h3>
-                                <p class="item-folio__cat">
-                                    Web Design
-                                </p>
-                            </div>
-    
-                            <a href="https://www.behance.net/" class="item-folio__project-link" title="Project link">
-                                <i class="icon-link"></i>
-                            </a>
-    
-                            <div class="item-folio__caption">
-                                <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                            </div>
-    
-                        </div>
-                    </div> <!-- end masonry__brick -->
-    
-                    <div class="masonry__brick" data-aos="fade-up">
-                        <div class="item-folio">
-                                
-                            <div class="item-folio__thumb">
-                                <a href={% static "DataFetcher/images/portfolio/gallery/g-palmeira.jpg" %} class="thumb-link" title="Palmeira" data-size="1050x700">
-                                    <img src={% static "DataFetcher/images/portfolio/palmeira.jpg" %}
-                                         srcset={% static "DataFetcher/images/portfolio/palmeira.jpg 1x" %}, {% static "DataFetcher/images/portfolio/palmeira@2x.jpg 2x" %} alt="">
-                                </a>
-                            </div>
-    
-                            <div class="item-folio__text">
-                                <h3 class="item-folio__title">
-                                    Palmeira
-                                </h3>
-                                <p class="item-folio__cat">
-                                    Web Design
-                                </p>
-                            </div>
-    
-                            <a href="https://www.behance.net/" class="item-folio__project-link" title="Project link">
-                                <i class="icon-link"></i>
-                            </a>
-    
-                            <div class="item-folio__caption">
-                                <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                            </div>
-    
-                        </div>
-                    </div> <!-- end masonry__brick -->
-
-                </div> <!-- end masonry -->
-            </div> <!-- end col-full -->
-        </div> <!-- end works-content -->
 
     </section> <!-- end s-works -->
 
