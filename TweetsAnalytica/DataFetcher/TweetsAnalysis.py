@@ -39,17 +39,25 @@ class TweetsAnalysis:
         for tweet in self.tweets:
             tweet = clean_tweet(tweet.full_text)
 
-            # Increment in emotions the tweet analysis' result
-            if emotion(tweet)['emotion']['emotion'] in self.emotions:
-                self.emotions[emotion(tweet)['emotion']['emotion']] += 1
+            if len(tweet) == 0: continue
+
+            # Get tweet analysis result
+            tweet_emotion = emotion(tweet)['emotion']['emotion']
+
+            # Increment in emotions the tweet analysis result
+            if tweet_emotion in self.emotions:
+                self.emotions[tweet_emotion] += 1
             else:
-                self.emotions[emotion(tweet)['emotion']['emotion']] = 1
+                self.emotions[tweet_emotion] = 1
 
         return self.emotions
 
 
     def visualize_tweets(self,emotions):
-        """Draws a pie chart of ParallelDots analysis result using MatPlotLib"""
+        """Draws a pie chart of ParallelDots analysis result using MatPlotLib.
+
+        :param emotions: Dictionary of tweets analysis results.
+        """
 
         # Extract keys and values from given Dictionary
         labels = list(emotions.keys())
