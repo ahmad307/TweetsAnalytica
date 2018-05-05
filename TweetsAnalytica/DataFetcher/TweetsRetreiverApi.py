@@ -1,6 +1,8 @@
 import tweepy
 from DataFetcher.models import User,Tweet
 from django.core.exceptions import ValidationError
+from tweepy.binder import TweepError
+
 
 class TweetsRetreiver:
     """Retreives user's twitter profile data using twitter api and Tweepy lib.
@@ -20,16 +22,26 @@ class TweetsRetreiver:
         self.api = tweepy.API(self.auth)
         self.handle = handle
 
-        #Get user timeline data as list of JSON responses
-        self.tweets = self.api.user_timeline(screen_name=self.handle, tweet_mode='extended',count=50)
+        self.tweets = []
+        # Pass TweepError, where empty tweets list isn't processed in save_user_data()
+        try:
+            #Get user timeline data as list of JSON responses
+            self.tweets = self.api.user_timeline(screen_name=self.handle, tweet_mode='extended',count=20)
+        except TweepError:
+            pass
 
 
     def save_user_data(self):
         """Fetches user's profile data and saves them in User table in database.
 
         :returns: a refrence to the user database object if it's saved, or
-        :returns: False if the user couldn't be saved to database.
+        :returns: Dictionary containing error_message if the user couldn't be saved to database.
         """
+
+        # Return error if user isn't fetched or desn't have any tweets
+        if len(self.tweets) == 0:
+            return {'error_message': 'User does not exist or has zero tweets.'}
+
         name = self.tweets[0].user.name
         tweets_count = self.tweets[0].user.statuses_count
         followers_count = self.tweets[0].user.followers_count
@@ -52,7 +64,7 @@ class TweetsRetreiver:
             user.save()
             return user
         except ValidationError:
-            return False
+            return {'error_message': 'User already exists.'}
 
 
     def save_user_tweets(self,user):

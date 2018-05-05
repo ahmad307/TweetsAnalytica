@@ -58,7 +58,7 @@
                 <ul class="header-nav__list">
                     <li class="current"><a class="smoothscroll"  href="#home" title="home">Home</a></li>
                     <li><a class="smoothscroll"  href="#about" title="about">About</a></li>
-                    <li><a class="smoothscroll"  href="#works" title="works">Works</a></li>
+                    <li><a class="smoothscroll"  href="#works" title="works">Try It Out</a></li>
                 </ul>
     
                 <p>Tweets Analytica is currently in Beta version.</p>
@@ -219,7 +219,7 @@
 
             <!-- Analysis figure-section -->
             <div class="row section-header">
-                <img src={% static analysis_figure %} alt="Enter username to get analyzed figure of your tweets">
+                <img src={% static analysis_figure %} alt="{{ figure_alt_msg }}">
             </div>
 
         </div> <!-- end intro-wrap -->
