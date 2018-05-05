@@ -20,7 +20,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9_p@vpf_bvt+m(0flb@k)cs-x^@b^5a(88#=@z@mfnbbz^bgs('
+SECRET_KEY = open('D:\TwitterScraper\Django_Secret.txt', 'r').read()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
