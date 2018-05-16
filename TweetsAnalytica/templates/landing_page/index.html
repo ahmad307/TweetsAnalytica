@@ -7,6 +7,7 @@
 
 <head>
     {% load staticfiles %}
+
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
@@ -43,8 +44,9 @@
     <header class="s-header">
 
         <div class="header-logo">
-            <a class="site-logo" href="">
-                <img src={% static "DataFetcher/images/logo.png" %} alt="Homepage">
+            <a class="site-logo" href="https://github.com/ahmad307/TweetsAnalytica">
+                <!--<img src={% static "DataFetcher/images/github_logo.png" %} alt="Homepage">-->
+                <i class="fa fa-github" style="color: white;font-size: 60px"></i>
             </a>
         </div>
 
@@ -58,26 +60,14 @@
                 <ul class="header-nav__list">
                     <li class="current"><a class="smoothscroll"  href="#home" title="home">Home</a></li>
                     <li><a class="smoothscroll"  href="#about" title="about">About</a></li>
-                    <li><a class="smoothscroll"  href="#works" title="works">Try It Out</a></li>
+                    <li><a class="smoothscroll"  href="#try" title="try">Try It Out</a></li>
                 </ul>
     
                 <p>Tweets Analytica is currently in Beta version.</p>
     
                 <ul class="header-nav__social">
                     <li>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="https://github.com/ahmad307/tweetsanalytica"><i class="fa fa-github"></i></a>
                     </li>
                 </ul>
 
@@ -114,7 +104,7 @@
                 </h1>
 
                 <div class="home-content__buttons">
-                    <a href="#works" class="smoothscroll btn btn--stroke">
+                    <a href="#try" class="smoothscroll btn btn--stroke">
                         Try It Out
                     </a>
                     <a href="#about" class="smoothscroll btn btn--stroke">
@@ -133,26 +123,6 @@
             <div class="home-content__line"></div>
 
         </div> <!-- end home-content -->
-
-
-        <ul class="home-social">
-            <li>
-                <a href="#0"><i class="fa fa-facebook" aria-hidden="true"></i><span>Facebook</span></a>
-            </li>
-            <li>
-                <a href="#0"><i class="fa fa-twitter" aria-hidden="true"></i><span>Twiiter</span></a>
-            </li>
-            <li>
-                <a href="#0"><i class="fa fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
-            </li>
-            <li>
-                <a href="#0"><i class="fa fa-behance" aria-hidden="true"></i><span>Behance</span></a>
-            </li>
-            <li>
-                <a href="#0"><i class="fa fa-dribbble" aria-hidden="true"></i><span>Dribbble</span></a>
-            </li>
-        </ul> 
-        <!-- end home-social -->
 
     </section> <!-- end s-home -->
 
@@ -195,9 +165,9 @@
     </section> <!-- end s-about -->
 
 
-    <!-- works
+    <!-- try it out
     ================================================== -->
-    <section id='works' class="s-works">
+    <section id='try' class="s-works">
 
         <div class="intro-wrap">
                 
@@ -212,7 +182,7 @@
             <div class="row section-header">
                 <form method="POST">
                     {% csrf_token %}
-                    <input name="user_name" type="text" style="color: black;background-color: ghostwhite;position: relative;left: 398px">
+                    <input name="user_name" type="text" style="color: black;background-color: ghostwhite;position: relative;left: 41.5%">
                     <button type="submit" value="Submit">Submit</button>
                 </form>
             </div>
@@ -224,7 +194,7 @@
 
         </div> <!-- end intro-wrap -->
 
-    </section> <!-- end s-works -->
+    </section> <!-- end s-try -->
 
 
 
