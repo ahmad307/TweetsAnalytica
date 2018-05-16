@@ -1,11 +1,14 @@
 # TweetsAnalytica
 A web application that analyzes user's public Twitter profile.
 
+**Check it out at:**
+*https://tweets-analytica.herokuapp.com/*
+
 **Built with:**
 * Django.
+* Twitter API through Tweepy library.
 * Beautiful Soup.
 * Matplotlib.
-* Twitter API through Tweepy library.
 
 *The project is built for learning purposes.*
 
