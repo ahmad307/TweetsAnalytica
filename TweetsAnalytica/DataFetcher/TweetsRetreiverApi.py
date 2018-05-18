@@ -58,13 +58,15 @@ class TweetsRetreiver:
             likes_count = likes_count
         )
 
-        # Validate and save user data to database
+        # Validate and save user data to database,
+        #   return reference to the saved user
         try:
             user.full_clean()
             user.save()
-            return user
         except ValidationError:
-            return {'error_message': 'User already exists.'}
+            user = User.objects.get(handle=self.handle)
+        finally:
+            return user
 
 
     def save_user_tweets(self,user):
