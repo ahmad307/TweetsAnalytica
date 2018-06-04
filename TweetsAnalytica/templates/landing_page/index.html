@@ -7,7 +7,6 @@
 
 <head>
     {% load staticfiles %}
-
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
@@ -45,7 +44,6 @@
 
         <div class="header-logo">
             <a class="site-logo" href="https://github.com/ahmad307/TweetsAnalytica">
-                <!--<img src={% static "DataFetcher/images/github_logo.png" %} alt="Homepage">-->
                 <i class="fa fa-github" style="color: white;font-size: 60px"></i>
             </a>
         </div>
@@ -63,7 +61,7 @@
                     <li><a class="smoothscroll"  href="#try" title="try">Try It Out</a></li>
                 </ul>
     
-                <p>Tweets Analytica is currently in Beta version.</p>
+                <p>Tweets Analytica is currently in Beta version, If you encounter any error open an Issue on our GitHub Repository.</p>
     
                 <ul class="header-nav__social">
                     <li>
@@ -182,8 +180,8 @@
             <div class="row section-header">
                 <form method="POST">
                     {% csrf_token %}
-                    <input name="user_name" type="text" style="color: black;background-color: ghostwhite;position: relative;left: 41.5%">
-                    <button type="submit" value="Submit">Submit</button>
+                    <input name="user_name" style="color: black;background-color: ghostwhite;position: absolute; left: 39.5%; bottom: 20px; height: 40px; width: 200px;" type="text">
+                    <button type="submit" value="Submit" style="position:relative; top:50px;height: 40px;">Submit</button>
                 </form>
             </div>
 

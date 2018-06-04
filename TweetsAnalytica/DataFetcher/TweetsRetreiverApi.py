@@ -15,8 +15,8 @@ class TweetsRetreiver:
 
         :param handle: String carrying user's twitter username.
         """
-        self.consumer_key = "2Vikr8XyYV4jtwgVhzet1Z1SR"
-        self.consumer_secret = open('D:/TwitterScraper/ConsumerSecret.txt','r').read()
+        self.consumer_key = ''
+        self.consumer_secret = ''
 
         self.auth = tweepy.OAuthHandler(self.consumer_key,self.consumer_secret)
         self.api = tweepy.API(self.auth)

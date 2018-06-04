@@ -1,7 +1,9 @@
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 from paralleldots import set_api_key,get_api_key
 from paralleldots import similarity, ner, taxonomy, sentiment, keywords, intent, emotion, abuse
 from random import randint
-import matplotlib.pyplot as plt
 import tweepy
 import re
 
@@ -23,7 +25,7 @@ class TweetsAnalysis:
         self.tweets = tweets
 
         # Setting ParalleDots API keys
-        set_api_key(open('D:/TwitterScraper/ParallelDotsKey.txt', 'r').read())
+        set_api_key('')
         get_api_key()
 
         #Dictionary to save analysis results
@@ -52,7 +54,7 @@ class TweetsAnalysis:
 
         return self.emotions
 
-
+    
     def visualize_tweets(self,emotions):
         """Draws a pie chart of ParallelDots analysis result using MatPlotLib.
 

@@ -31,16 +31,16 @@ def index(request):
 
             # Get dictionary containing analysis results
             emotions = analyser.get_emotions()
-
+            
             # Get analysis visualization chart
             figure = analyser.visualize_tweets(emotions)
 
             # Save figure in static folder as png
-            figure.savefig('static/analysis_figures/figure.png')
+            figure.savefig('static/analysis_figures/figure2.png')
             figure.close()
 
-            # Inject html with figure path
-            response['analysis_figure'] = 'analysis_figures/figure.png'
+            # Inject html with dummy figure path
+            response['analysis_figure'] = 'analysis_figures/figure2.png'
 
         elif user['error_message'] == 'User already exists.':
             response['figure_alt_msg'] = 'User with this username already exists!'

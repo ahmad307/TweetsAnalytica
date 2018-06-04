@@ -1,0 +1,9 @@
+matplotlib==2.2.2
+ParallelDots==3.2.5
+tweepy==3.6.0
+Django==1.11.6
+urllib3==1.21.1
+requests==2.18.1
+beautifulsoup4==4.6.0
+gunicorn==19.0.0
+whitenoise==3.3.1
